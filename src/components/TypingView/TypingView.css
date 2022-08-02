@@ -1,0 +1,48 @@
+.typing-test {
+  font-family: 'Source Code Pro', 'Consolas', monospace;
+  font-size: 1.1rem;
+  letter-spacing: 0.1rem;
+  position: relative;
+  width: 100%;
+}
+
+:focus { outline: none; }
+
+
+@keyframes flash {
+  0%,
+  100% {
+    opacity: 0;
+  }
+
+  50% {
+    color: white;
+    opacity: 0.75;
+  }
+}
+
+.caret {
+  animation: flash 1s infinite;
+  transition: 0.12s;
+  position: absolute;
+  display: inline;
+  background-color: white;
+  z-index: 0
+}
+
+.main-text {
+  display: inline-block;
+  position: relative;
+  padding: 20px;
+  background-color: var(--dark-grey-d5);
+  border-radius: 10px;
+  width: 100%;
+}
+
+div.text-display {
+  padding: 20px;
+  background-color: #0d101475;
+  color: var(--light-grey-d5)!important;
+  border-radius: 10px;
+  width: 100%;
+}
