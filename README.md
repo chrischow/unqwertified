@@ -20,4 +20,4 @@ Cho also applied a transformation to the QWERTY layout to remove the familiarity
 
 
 ## References
-H. Cho, [Comparing QWERTY and Dvorak Keyboard Speed: a Pilot Study](https://s-space.snu.ac.kr/handle/10371/123098) (2014), 
+H. Cho, [Comparing QWERTY and Dvorak Keyboard Speed: a Pilot Study](https://s-space.snu.ac.kr/handle/10371/123098) (2014).
