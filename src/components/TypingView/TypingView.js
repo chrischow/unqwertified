@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, useRef } from "react";
+import { useMemo, useState, useRef } from "react";
 import useTypingGame from "react-typing-game-hook";
 import Button from "react-bootstrap/Button";
 import translateText from "../../helpers/translateText";
@@ -16,13 +16,13 @@ export default function TypingView(props) {
   const {
     states: {
       charsState,
-      length,
+      // length,
       currIndex,
-      currChar,
-      correctChar,
+      // currChar,
+      // correctChar,
       phase,
-      startTime,
-      endTime
+      // startTime,
+      // endTime
     },
     actions: { insertTyping, resetTyping, deleteTyping }
   } = useTypingGame(textTransposed, {
