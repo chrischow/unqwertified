@@ -1,70 +1,23 @@
-# Getting Started with Create React App
+# UNQWERTIFIED
+UNQWERTIFIED is a simple React app to let users try out several different keyboard layouts. It implements [Hanggjun Cho's (2014) proposed method](https://s-space.snu.ac.kr/handle/10371/123098) for overcoming the difficult of comparing QWERTY and Dvorak layouts on users who are equally skilled in QWERTY and Dvorak.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Keyboard Layouts
 
-## Available Scripts
+1. QWERTY
+2. [Dvorak](https://en.wikipedia.org/wiki/Dvorak_keyboard_layout)
+3. [Colemak](https://colemak.com/)
+4. [Carpalx QWYRFM](http://mkweb.bcgsc.ca/carpalx/?partial_optimization)
+5. [Carpalx QGMLWY](http://mkweb.bcgsc.ca/carpalx/?full_optimization)
 
-In the project directory, you can run:
+## Cho's Method
+Cho employed a character mapping method to transfer the user's knowledge of the familiar layout (QWERTY) to the new layout (Dvorak). He provides the example:
 
-### `npm start`
+$$ f_{QWERTY}^{-1}(f_{Dvorak}(``computer")) = ``ismrfkdo"$$
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Typing `ismrfkdo` in QWERTY would be equivalent to typing `computer` on a Dvorak keyboard. Using the nested function above, participants would not need to know Dvorak to type the same words on a keyboard.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Cho also applied a transformation to the QWERTY layout to remove the familiarity advantage in typing normal words using QWERTY. This was not implemented in UNQWERTIFIED since we are not comparing typing speed on QWERTY with the alternative layouts.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## References
+H. Cho, [Comparing QWERTY and Dvorak Keyboard Speed: a Pilot Study](https://s-space.snu.ac.kr/handle/10371/123098) (2014), 
