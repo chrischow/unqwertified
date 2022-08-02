@@ -41,6 +41,11 @@ function App() {
         <p>Randomise the text, choose a layout, click into the typing window, and start typing.</p>
         <p>Hit <code>ESC</code> to restart the sequence.</p>
       </div>
+      <div className="justify-content-center d-flex mt-3">
+        <Button className="btn-green" onClick={() => setText(getText('shortText'))}>Short Text</Button>
+        <Button className="btn-purple" onClick={() => setText(getText('mediumText'))} style={{marginLeft: "10px"}}>Medium Text</Button>
+        <Button className="btn-red" onClick={() => setText(getText('longText'))} style={{marginLeft: "10px"}}>Long Text</Button>
+      </div>
       <Row className="justify-content-center mt-3">
         <Col xs={6} xl={4}>
           <Form.Select 
@@ -55,11 +60,6 @@ function App() {
           </Form.Select>
         </Col>
       </Row>
-      <div className="justify-content-center d-flex mt-3">
-        <Button className="btn-green" onClick={() => setText(getText('shortText'))}>Short Text</Button>
-        <Button className="btn-purple" onClick={() => setText(getText('mediumText'))} style={{marginLeft: "10px"}}>Medium Text</Button>
-        <Button className="btn-red" onClick={() => setText(getText('longText'))} style={{marginLeft: "10px"}}>Long Text</Button>
-      </div>
       {text && <TypingView layout={kbLayout} text={text} />}
     </Container>
   );
