@@ -10,26 +10,28 @@ import { data } from "./data";
 function App() {
   // State
   const [kbLayout, setKbLayout] = useState('QWERTY');
-  const [text, setText] = useState()
+  const [text, setText] = useState('');
+  const [textType, setTextType] = useState('');
 
   // Randomise texts
-  const getText = (textType) => {
-    const nTexts = data[textType].length;
+  const getText = (textPref) => {
+    const nTexts = data[textPref].length;
     const randomIdx = Math.floor(Math.random() * nTexts);
-    return data[textType][randomIdx];
+    setTextType(textPref);
+    setText(data[textPref][randomIdx]);
   }
 
   // Initialise texts
   useEffect(() => {
-    setText(getText('shortText'));
+    getText('shortText');
   }, []);
 
   const kbLayouts = [
-    {value: 'QWERTY', label: 'QWERTY'},
-    {value: 'Dvorak', label: 'Dvorak'},
-    {value: 'Colemak', label: 'Colemak'},
-    {value: 'QWYRFM', label: 'Carpalx QWYRFM'},
-    {value: 'QGMLWY', label: 'Carpalx QGMLWY'},
+    { value: 'QWERTY', label: 'QWERTY' },
+    { value: 'Dvorak', label: 'Dvorak' },
+    { value: 'Colemak', label: 'Colemak' },
+    { value: 'QWYRFM', label: 'Carpalx QWYRFM' },
+    { value: 'QGMLWY', label: 'Carpalx QGMLWY' },
   ];
 
   return (
@@ -38,17 +40,20 @@ function App() {
         <h1>UNQWERTIFIED</h1>
       </div>
       <div className="info-panel text-center mt-4">
-        <p>Randomise the text, choose a layout, click into the typing window, and start typing.</p>
-        <p>Hit <code>ESC</code> to restart the sequence.</p>
+        <p>
+          Randomise the text (<code>F2</code>), choose a layout, click into the typing window, and start typing.
+          <br />
+          Reset (<code>ESC</code>) if you need to.
+        </p>
       </div>
       <div className="justify-content-center d-flex mt-3">
-        <Button className="btn-green" onClick={() => setText(getText('shortText'))}>Short Text</Button>
-        <Button className="btn-purple" onClick={() => setText(getText('mediumText'))} style={{marginLeft: "10px"}}>Medium Text</Button>
-        <Button className="btn-red" onClick={() => setText(getText('longText'))} style={{marginLeft: "10px"}}>Long Text</Button>
+        <Button className="btn-green" onClick={() => getText('shortText')}>Short Text</Button>
+        <Button className="btn-purple" onClick={() => getText('mediumText')} style={{ marginLeft: "10px" }}>Medium Text</Button>
+        <Button className="btn-red" onClick={() => getText('longText')} style={{ marginLeft: "10px" }}>Long Text</Button>
       </div>
       <Row className="justify-content-center mt-3">
         <Col xs={6} xl={4}>
-          <Form.Select 
+          <Form.Select
             id="layout-select"
             onChange={event => setKbLayout(event.target.value)}
             value={kbLayout}
@@ -60,7 +65,14 @@ function App() {
           </Form.Select>
         </Col>
       </Row>
-      {text && <TypingView layout={kbLayout} text={text} />}
+      {text &&
+        <TypingView
+          layout={kbLayout}
+          text={text}
+          getText={getText}
+          textType={textType}
+        />
+      }
     </Container>
   );
 }

@@ -1,6 +1,5 @@
-import { useMemo, useState, useRef } from "react";
+import { useMemo, useState, useRef, useEffect } from "react";
 import useTypingGame from "react-typing-game-hook";
-import Button from "react-bootstrap/Button";
 import translateText from "../../helpers/translateText";
 import './TypingView.css';
 
@@ -8,9 +7,14 @@ export default function TypingView(props) {
   // State
   const letterElements = useRef(null);
   const [focused, setFocused] = useState(false);
+  const [text, setText] = useState('');
+
+  useEffect(() => {
+    setText(props.text);
+  }, [props.text]);
 
   // Configure text
-  let textTransposed = translateText(props.text, props.layout);
+  const textTransposed = translateText(text, props.layout);
 
   // Create game object
   const {
@@ -38,6 +42,8 @@ export default function TypingView(props) {
       deleteTyping(false);
     } else if (key.length === 1) {
       insertTyping(key)
+    } else if (key === 'F2') {
+      props.getText(props.textType);
     }
   };
 
@@ -57,15 +63,15 @@ export default function TypingView(props) {
   }, [currIndex]);
 
   return (
-    <div className="mt-5">
-      {props.layout !== 'QWERTY' && phase !== 2 && 
+    <div className="mt-3">
+      {props.layout !== 'QWERTY' &&
         <>
-          <div className="mt-5">
+          <div className="mt-3">
             <h3>{props.layout} output:</h3>
           </div>
           <div className="typing-test mt-3">
             <div className="text-display">
-              {phase !== 2 && props.text.split("").map((char, index) => {
+              {props.text.split("").map((char, index) => {
                 let state = charsState[index];
                 let color = state === 0 ? "var(--light-grey-d5)" : state === 1 ? "var(--green)" : "var(--red)";
                 return (
@@ -81,9 +87,14 @@ export default function TypingView(props) {
           </div>
         </>
       }
-      {phase !== 2 && <div className="true-text-header mt-5">
-        <h3>{props.layout === 'QWERTY' ? "Type:" : `${props.layout} using QWERTY:`}</h3>
-      </div>}
+      <div className="true-text-header mt-4">
+        <h3>
+          Type here:
+          {props.layout !== 'QWERTY' &&
+            <code style={{ marginLeft: "25px", color: "#27ddcb" }}>{props.layout} mapped to QWERTY</code>
+          }
+        </h3>
+      </div>
       <div
         className="typing-test mt-3"
         onKeyDown={event => {
@@ -94,7 +105,7 @@ export default function TypingView(props) {
         onBlur={() => setFocused(false)}
         tabIndex={0}
       >
-        {phase !== 2 && <div className="main-text">
+        <div className="main-text">
           <div ref={letterElements} tabIndex={0}>
             {textTransposed.split("").map((char, index) => {
               let state = charsState[index];
@@ -119,13 +130,14 @@ export default function TypingView(props) {
           >
             &nbsp;
           </div>}
-        </div>}
+        </div>
       </div>
       {phase === 2 &&
-        <div className="text-center mt-5">
-          <h3>And you're done!</h3>
-          <p>How was the {props.layout} layout?</p>
-          <Button variant="outline-light" onClick={() => resetTyping()}>Restart</Button>
+        <div className="text-center mt-4">
+          <h3 style={{ color: "#27ddcb" }}>And you're done!</h3>
+          <p>
+            Hit <code>ESC</code> to restart, or <code>F2</code> to get new text.
+          </p>
         </div>
       }
     </div>
