@@ -43,7 +43,11 @@ export default function TypingView(props) {
     } else if (key.length === 1) {
       insertTyping(key)
     } else if (key === 'F2') {
-      props.getText(props.textType);
+      props.getText("shortText");
+    } else if (key === 'F3') {
+      props.getText("mediumText");
+    } else if (key === 'F4') {
+      props.getText("longText");
     }
   };
 
@@ -91,7 +95,9 @@ export default function TypingView(props) {
         <h3>
           Type here:
           {props.layout !== 'QWERTY' &&
-            <code style={{ marginLeft: "25px", color: "#27ddcb" }}>{props.layout} mapped to QWERTY</code>
+            <code style={{ marginLeft: "25px", color: "var(--bs-code-color)", fontSize: "1.2rem" }}>
+              [{props.layout} mapped to QWERTY]
+            </code>
           }
         </h3>
       </div>
@@ -136,7 +142,7 @@ export default function TypingView(props) {
         <div className="text-center mt-4">
           <h3 style={{ color: "#27ddcb" }}>And you're done!</h3>
           <p>
-            Hit <code>ESC</code> to restart, or <code>F2</code> to get new text.
+            Hit <code>ESC</code> to restart, or <code style={{ color: "var(--green-d2)" }}>F2</code> / <code style={{ color: "var(--purple)" }}>F3</code> / <code>F4</code> to get new text.
           </p>
         </div>
       }

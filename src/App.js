@@ -9,7 +9,7 @@ import { data } from "./data";
 
 function App() {
   // State
-  const [kbLayout, setKbLayout] = useState('QWERTY');
+  const [kbLayout, setKbLayout] = useState('Dvorak');
   const [text, setText] = useState('');
   const [textType, setTextType] = useState('');
 
@@ -41,15 +41,21 @@ function App() {
       </div>
       <div className="info-panel text-center mt-4">
         <p>
-          Randomise the text (<code>F2</code>), choose a layout, click into the typing window, and start typing.
+          Randomise the text, choose a layout, click into the typing window, and start typing.
           <br />
           Reset (<code>ESC</code>) if you need to.
         </p>
       </div>
       <div className="justify-content-center d-flex mt-3">
-        <Button className="btn-green" onClick={() => getText('shortText')}>Short Text</Button>
-        <Button className="btn-purple" onClick={() => getText('mediumText')} style={{ marginLeft: "10px" }}>Medium Text</Button>
-        <Button className="btn-red" onClick={() => getText('longText')} style={{ marginLeft: "10px" }}>Long Text</Button>
+        <Button className="btn-green" onClick={() => getText('shortText')}>
+          Short Text (<code style={{ color: "var(--green-d2)" }}>F2</code>)
+        </Button>
+        <Button className="btn-purple" onClick={() => getText('mediumText')} style={{ marginLeft: "10px" }}>
+          Medium Text (<code style={{ color: "var(--purple)" }}>F3</code>)
+        </Button>
+        <Button className="btn-red" onClick={() => getText('longText')} style={{ marginLeft: "10px" }}>
+          Long Text (<code>F4</code>)
+        </Button>
       </div>
       <Row className="justify-content-center mt-3">
         <Col xs={6} xl={4}>
